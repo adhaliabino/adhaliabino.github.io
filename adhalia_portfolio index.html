@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adhalia Chinnu Bino | Data & Economics Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --burgundy-deep: #2d0a14;
+    --burgundy-mid: #5c1a2e;
+    --burgundy-rich: #800020;
+    --cream: #f5f0eb;
+    --gold: #d4a853;
+    --text-light: rgba(245,240,235,0.85);
+    --text-muted: rgba(245,240,235,0.5);
+    --border: rgba(245,240,235,0.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--burgundy-deep); color: var(--cream); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: rgba(45,10,20,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--cream); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--gold); }
+
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 4rem 4rem; gap: 4rem; background: linear-gradient(135deg, var(--burgundy-deep) 0%, var(--burgundy-mid) 100%); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -30%; right: -15%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(212,168,83,0.06) 0%, transparent 65%); pointer-events: none; }
+  .hero-text { animation: fadeUp 1s ease both; position: relative; z-index: 1; }
+  .hero-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
+  .hero-label::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--gold); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; color: var(--cream); }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-desc { font-size: 1rem; line-height: 1.9; color: var(--text-light); max-width: 480px; margin-bottom: 2.5rem; }
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--burgundy-deep); padding: 0.9rem 2rem; text-decoration: none; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; transition: all 0.3s; border: 1px solid var(--gold); }
+  .btn-primary:hover { background: transparent; color: var(--gold); }
+  .btn-secondary { background: transparent; color: var(--cream); padding: 0.9rem 2rem; text-decoration: none; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border); transition: all 0.3s; }
+  .btn-secondary:hover { border-color: var(--cream); }
+  .hero-visual { display: flex; flex-direction: column; gap: 1rem; animation: fadeUp 1s 0.2s ease both; position: relative; z-index: 1; }
+  .stat-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-card { background: rgba(245,240,235,0.06); border: 1px solid var(--border); padding: 1.5rem; transition: all 0.3s; }
+  .stat-card:hover { background: rgba(245,240,235,0.1); border-color: rgba(212,168,83,0.4); transform: translateY(-3px); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); line-height: 1; margin-bottom: 0.4rem; }
+  .stat-label { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  .quote-card { background: rgba(212,168,83,0.08); border: 1px solid rgba(212,168,83,0.25); padding: 1.8rem; }
+  .quote-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; line-height: 1.8; color: var(--text-light); }
+
+  .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
+  .section-label::before { content: ''; display: block; width: 1.5rem; height: 1px; background: var(--gold); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); margin-bottom: 3rem; line-height: 1.2; color: var(--cream); }
+
+  #about { padding: 6rem 4rem; background: var(--burgundy-mid); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: start; }
+  .about-story p { font-size: 0.98rem; line-height: 1.9; color: var(--text-light); margin-bottom: 1.2rem; }
+  .about-story p strong { color: var(--gold); font-weight: 500; }
+  .about-details { display: flex; flex-direction: column; gap: 2rem; }
+  .detail-group h4 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag { background: rgba(245,240,235,0.06); border: 1px solid var(--border); padding: 0.3rem 0.8rem; font-size: 0.78rem; color: var(--text-light); transition: all 0.2s; }
+  .tag:hover { border-color: rgba(212,168,83,0.5); color: var(--gold); }
+
+  /* PROJECTS MSc work */
+  #projects { padding: 6rem 4rem; background: var(--burgundy-deep); }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .project-card { background: rgba(245,240,235,0.04); border: 1px solid var(--border); padding: 2rem; position: relative; overflow: hidden; transition: all 0.3s; }
+  .project-card:hover { background: rgba(245,240,235,0.07); border-color: rgba(212,168,83,0.35); transform: translateY(-5px); }
+  .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--burgundy-rich), var(--gold)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-num { font-family: 'Playfair Display', serif; font-size: 4rem; color: rgba(212,168,83,0.08); position: absolute; top: 0; right: 1rem; line-height: 1; font-weight: 700; }
+  .project-tag { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+  .project-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.8rem; line-height: 1.4; color: var(--cream); }
+  .project-desc { font-size: 0.85rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.2rem; }
+  .project-methods { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .method-tag { background: rgba(128,0,32,0.3); border: 1px solid rgba(128,0,32,0.5); padding: 0.2rem 0.6rem; font-size: 0.7rem; color: rgba(245,240,235,0.7); }
+
+  /* RESEARCH PAPERS */
+  #research { padding: 6rem 4rem; background: var(--burgundy-mid); }
+  .research-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .research-card { background: rgba(245,240,235,0.04); border: 1px solid var(--border); padding: 2rem; position: relative; transition: all 0.3s; overflow: hidden; }
+  .research-card:hover { background: rgba(245,240,235,0.07); border-color: rgba(212,168,83,0.35); transform: translateY(-4px); }
+  .research-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+  .research-card:hover::after { transform: scaleX(1); }
+  .research-type { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
+  .research-badge { background: rgba(128,0,32,0.4); border: 1px solid rgba(128,0,32,0.6); padding: 0.15rem 0.5rem; font-size: 0.62rem; color: rgba(245,240,235,0.8); letter-spacing: 0.08em; }
+  .research-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 0.7rem; line-height: 1.45; color: var(--cream); }
+  .research-venue { font-size: 0.78rem; color: var(--gold); font-style: italic; margin-bottom: 0.8rem; opacity: 0.8; }
+  .research-desc { font-size: 0.83rem; line-height: 1.78; color: var(--text-muted); margin-bottom: 1rem; }
+  .research-finding { font-size: 0.8rem; line-height: 1.7; color: rgba(245,240,235,0.6); padding: 0.8rem; background: rgba(212,168,83,0.05); border-left: 2px solid rgba(212,168,83,0.3); }
+
+  /* COMMERCIAL WORK */
+  #commercial { padding: 6rem 4rem; background: var(--burgundy-deep); }
+  .commercial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .commercial-card { background: rgba(245,240,235,0.04); border: 1px solid var(--border); padding: 2rem; position: relative; transition: all 0.3s; }
+  .commercial-card:hover { background: rgba(245,240,235,0.07); border-color: rgba(212,168,83,0.35); transform: translateY(-4px); }
+  .commercial-tag { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .commercial-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.7rem; line-height: 1.4; color: var(--cream); }
+  .commercial-org { font-size: 0.8rem; color: rgba(212,168,83,0.7); margin-bottom: 0.8rem; }
+  .commercial-desc { font-size: 0.83rem; line-height: 1.78; color: var(--text-muted); margin-bottom: 1rem; }
+  .commercial-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .commercial-skill { background: rgba(128,0,32,0.25); border: 1px solid rgba(128,0,32,0.4); padding: 0.2rem 0.6rem; font-size: 0.7rem; color: rgba(245,240,235,0.7); }
+
+  /* SKILLS */
+  #skills { padding: 6rem 4rem; background: var(--burgundy-mid); }
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .skill-group { background: rgba(245,240,235,0.04); border: 1px solid var(--border); padding: 1.8rem; }
+  .skill-group h4 { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--border); }
+  .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+  .skill-list li { font-size: 0.85rem; color: var(--text-light); display: flex; align-items: center; gap: 0.6rem; }
+  .skill-list li::before { content: ''; display: block; width: 4px; height: 4px; background: var(--burgundy-rich); border-radius: 50%; flex-shrink: 0; }
+
+  /* EXPERIENCE */
+  #experience { padding: 6rem 4rem; background: var(--burgundy-deep); }
+  .exp-timeline { display: flex; flex-direction: column; }
+  .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-date { font-size: 0.78rem; color: var(--text-muted); padding-top: 0.3rem; }
+  .exp-role { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--cream); margin-bottom: 0.25rem; }
+  .exp-company { font-size: 0.82rem; color: var(--gold); margin-bottom: 0.8rem; }
+  .exp-desc { font-size: 0.85rem; line-height: 1.8; color: var(--text-muted); }
+
+  /* CONTACT */
+  #contact { padding: 6rem 4rem; background: var(--burgundy-mid); text-align: center; }
+  .contact-inner { max-width: 580px; margin: 0 auto; }
+  .contact-desc { font-size: 0.98rem; line-height: 1.85; color: var(--text-light); margin-bottom: 2.5rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--text-light); font-size: 0.82rem; padding: 0.8rem 1.5rem; border: 1px solid var(--border); transition: all 0.3s; }
+  .contact-link:hover { border-color: var(--gold); color: var(--gold); }
+
+  footer { background: #1a0610; color: var(--text-muted); text-align: center; padding: 1.8rem; font-size: 0.75rem; letter-spacing: 0.08em; border-top: 1px solid var(--border); }
+
+
+  /* COURSEWORK */
+  #coursework { padding: 6rem 4rem; background: var(--burgundy-deep); }
+  .coursework-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .coursework-featured { grid-column: 1 / -1; }
+  .coursework-card { background: rgba(245,240,235,0.04); border: 1px solid var(--border); padding: 2rem; position: relative; transition: all 0.3s; }
+  .coursework-card:hover { background: rgba(245,240,235,0.07); border-color: rgba(212,168,83,0.35); transform: translateY(-4px); }
+  .coursework-featured { border-color: rgba(212,168,83,0.2); background: rgba(212,168,83,0.03); }
+  .coursework-tag { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+  .coursework-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.6rem; line-height: 1.45; color: var(--cream); }
+  .coursework-featured .coursework-title { font-size: 1.2rem; }
+  .coursework-institution { font-size: 0.78rem; color: rgba(212,168,83,0.7); font-style: italic; margin-bottom: 0.8rem; }
+  .coursework-desc { font-size: 0.83rem; line-height: 1.78; color: var(--text-muted); margin-bottom: 1rem; }
+  .coursework-findings { display: flex; flex-direction: column; gap: 0.6rem; }
+  .finding-item { font-size: 0.8rem; line-height: 1.7; color: rgba(245,240,235,0.6); padding: 0.7rem 1rem; background: rgba(245,240,235,0.03); border-left: 2px solid rgba(212,168,83,0.25); }
+  .finding-label { color: var(--gold); font-weight: 500; margin-right: 0.4rem; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; } .hero-visual { display: none; }
+    #about, #projects, #research, #commercial, #skills, #experience, #contact { padding: 4rem 1.5rem; }
+    .about-grid, .projects-grid, .research-grid, .commercial-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Adhalia Chinnu Bino</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">MSc Projects</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#commercial">Commercial</a></li>
+    <li><a href="#coursework">MSc Work</a></li><li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-label">MSc Economics & Data Science · University of Nottingham</div>
+    <h1>Data &amp; Economics <em>Analyst</em> ready to deliver</h1>
+    <p class="hero-desc">I build models, interrogate data, and turn complex analysis into decisions that matter. With an MSc in Economics and Data Science from the University of Nottingham and hands-on experience in econometrics, machine learning, and financial analysis, I am looking for an analyst role where rigorous quantitative work drives real business outcomes.</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-cards">
+      <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Published Papers</div></div>
+      <div class="stat-card"><div class="stat-num">35</div><div class="stat-label">States Analysed</div></div>
+      <div class="stat-card"><div class="stat-num">22K+</div><div class="stat-label">Firm-Year Records</div></div>
+      <div class="stat-card"><div class="stat-num">170+</div><div class="stat-label">Survey Respondents</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-story fade-in">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Analysis built on rigorous foundations</h2>
+      <p>I moved from Kerala, India to the UK to complete an MSc in Economics and Data Science at the University of Nottingham. It was scary. It was also the best decision I have made.</p>
+      <p>My academic and professional work spans econometrics, machine learning, financial modelling, and large-scale data analysis. I have worked with datasets ranging from 96 months of UK macroeconomic time series to 22,399 firm-year records, applying methods from VECM and propensity score matching to Ridge regression and XGBoost.</p>
+      <p>I founded a business at 17, published four research papers, conducted original fieldwork with over 170 survey respondents across Kerala, and built machine learning models comparing five competing methods across complex national datasets.</p>
+      <p>I hold a <strong>First Class Honours BA in Applied Economics</strong> and an <strong>MSc in Economics and Data Science</strong> from the University of Nottingham.</p>
+    </div>
+    <div class="about-details fade-in">
+      <div class="detail-group"><h4>Technical Skills</h4><div class="tags"><span class="tag">Python</span><span class="tag">R</span><span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Advanced Excel</span><span class="tag">Stata</span><span class="tag">SPSS</span></div></div>
+      <div class="detail-group"><h4>Methods</h4><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Causal Inference</span><span class="tag">Econometrics</span><span class="tag">Time Series</span><span class="tag">SHAP Values</span><span class="tag">Survey Design</span><span class="tag">Cross-Validation</span></div></div>
+      <div class="detail-group"><h4>Interested In</h4><div class="tags"><span class="tag">Financial Analysis</span><span class="tag">Economic Policy</span><span class="tag">Pricing Analytics</span><span class="tag">Forecasting</span><span class="tag">Business Intelligence</span><span class="tag">Risk Analysis</span></div></div>
+      <div class="detail-group"><h4>Based In</h4><div class="tags"><span class="tag">Nottingham, UK</span><span class="tag">Open to Relocation</span><span class="tag">Hybrid / Remote</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MSC PROJECTS -->
+<section id="projects">
+  <div class="section-label">MSc Analytical Projects</div>
+  <h2 class="section-title">Work that asks hard questions</h2>
+  <div class="projects-grid">
+    <div class="project-card fade-in">
+      <div class="project-num">01</div>
+      <div class="project-tag">MSc Dissertation · 2025</div>
+      <h3 class="project-title">Predicting Child Malnutrition Across 35 Indian States</h3>
+      <p class="project-desc">Constructed a multi-source dataset integrating NFHS-4, NFHS-5, and Reserve Bank of India indicators. Designed a temporal cross-validation framework comparing five models. Found regularised regression outperformed machine learning in small-sample settings. Education, sanitation, and demographic pressure were the strongest predictors.</p>
+      <div class="project-methods"><span class="method-tag">Ridge</span><span class="method-tag">LASSO</span><span class="method-tag">Random Forest</span><span class="method-tag">XGBoost</span><span class="method-tag">SHAP</span><span class="method-tag">Moran's I</span></div>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-num">02</div>
+      <div class="project-tag">Econometrics · 2024–25</div>
+      <h3 class="project-title">Causal Inference on 22,000+ UK Firm-Year Records</h3>
+      <p class="project-desc">Applied propensity score matching to 22,000+ financial records to identify true causal drivers of firm performance, going beyond correlation. Implemented systematic data quality checks throughout the analytical pipeline and communicated findings clearly to non-specialist audiences.</p>
+      <div class="project-methods"><span class="method-tag">Propensity Score Matching</span><span class="method-tag">Causal Inference</span><span class="method-tag">R</span><span class="method-tag">Data Validation</span></div>
+    </div>
+    <div class="project-card fade-in">
+      <div class="project-num">03</div>
+      <div class="project-tag">Forecasting · 2024–25</div>
+      <h3 class="project-title">Interest Rate & Inflation Forecasting</h3>
+      <p class="project-desc">Processed 100+ economic variables to build Gradient Boosting and Ridge Regression models forecasting Australian interbank rates and CPI trends. Evaluated model performance across economic scenarios and communicated outputs with explicit uncertainty discussion.</p>
+      <div class="project-methods"><span class="method-tag">Gradient Boosting</span><span class="method-tag">Ridge Regression</span><span class="method-tag">Time Series</span><span class="method-tag">Python</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH PAPERS -->
+<section id="research">
+  <div class="section-label">Published Research</div>
+  <h2 class="section-title">Four papers, all rooted in real communities</h2>
+  <div class="research-grid">
+
+    <div class="research-card fade-in">
+      <div class="research-type">Original Fieldwork <span class="research-badge">Published · 2023</span></div>
+      <h3 class="research-title">Financial Inclusion and Women Empowerment Through MGNREGA</h3>
+      <div class="research-venue">Marian College Kuttikanam · Pathanamthitta, Kerala</div>
+      <p class="research-desc">Original fieldwork with 60 respondents across two panchayats in Pathanamthitta district examining how India's largest rural employment scheme helped women enter the formal financial sector. Used random sampling, self-structured questionnaire, and quantitative analysis of banking behaviour, financial literacy, and empowerment outcomes.</p>
+      <div class="research-finding">Key finding: 37.5% of women opened their first bank account through this programme. Financial literacy increased significantly, though digital financial access remained limited only 17.5% could operate an ATM.</div>
+    </div>
+
+    <div class="research-card fade-in">
+      <div class="research-type">Original Fieldwork <span class="research-badge">Published · 2022</span></div>
+      <h3 class="research-title">Welfare of Tea Plantation Workers: A Case Study at AVT Plantation Pasuppara</h3>
+      <div class="research-venue">Marian College Kuttikanam · Idukki, Kerala</div>
+      <p class="research-desc">Fieldwork with 50 workers from 15 families at AVT Plantation in Pasuppara, Idukki the district where I grew up and studied. Investigated socioeconomic conditions, access to education, healthcare, housing, and basic needs. Used probability sampling and observational data collection alongside structured questionnaires.</p>
+      <div class="research-finding">Key finding: Despite statutory protections, many plantation workers continue to face significant barriers to education, healthcare access, and financial stability particularly women, who made up 60% of the workforce surveyed.</div>
+    </div>
+
+    <div class="research-card fade-in">
+      <div class="research-type">Mixed Methods Study <span class="research-badge">Published · 2024</span></div>
+      <h3 class="research-title">A Study on the Impact of ChatGPT Among College Students</h3>
+      <div class="research-venue">IIP Edited Book Series · Futuristic Trends in Social Sciences · Volume 3 · May 2024</div>
+      <p class="research-desc">Co-authored quantitative and qualitative study across 62 students from 28 colleges in India examining the impact of AI chatbots on academic performance, critical thinking, and learning experience. Used probability sampling and self-structured questionnaire covering awareness, usage patterns, and educational outcomes.</p>
+      <div class="research-finding">Key finding: 81.7% of students were familiar with ChatGPT but only 6.5% were regular users. The research highlighted both potential benefits for personalised learning and risks for academic integrity.</div>
+    </div>
+
+    <div class="research-card fade-in">
+      <div class="research-type">Comparative Policy Review <span class="research-badge">Published · 2023</span></div>
+      <h3 class="research-title">Food Crisis in Pakistan and Sri Lanka: A Contextualisation to India's Food Security</h3>
+      <div class="research-venue">Marian College Kuttikanam · Economic and Social Policy</div>
+      <p class="research-desc">Comparative review examining food security crises in Pakistan and Sri Lanka to identify structural vulnerabilities relevant to India. Analysed economic mismanagement, climate vulnerability, population pressure, and policy failure across three countries using secondary data and literature synthesis.</p>
+      <div class="research-finding">Key finding: India shares critical structural vulnerabilities with both countries a 3% agricultural growth rate below the 4.6% six-year average, 170 million undernourished people, and rising sensitivity to external shocks like the Russia-Ukraine war.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMMERCIAL WORK -->
+<section id="commercial">
+  <div class="section-label">Commercial & Professional Work</div>
+  <h2 class="section-title">Analytical skills applied to real business problems</h2>
+  <div class="commercial-grid">
+
+    <div class="commercial-card fade-in">
+      <div class="commercial-tag">Equity Research · 2023</div>
+      <h3 class="commercial-title">Equity Research Analysis: Britannia Industries Ltd</h3>
+      <div class="commercial-org">Hedge Equities Ltd · Ernakulam, Kerala</div>
+      <p class="commercial-desc">14-slide professional equity research report produced during internship at Hedge Equities. Covered macroeconomic context including GDP and IIP forecasting for FY23 Q4, FMCG industry analysis using Porter's Five Forces, qualitative and quantitative company analysis, shareholding pattern, P/E ratio valuation at 48.54x, and investment conclusion based on ROE track record of 53.6% over three years and dividend payout of 123%.</p>
+      <div class="commercial-skills"><span class="commercial-skill">GDP Forecasting</span><span class="commercial-skill">IIP Analysis</span><span class="commercial-skill">Porter's Five Forces</span><span class="commercial-skill">P/E Valuation</span><span class="commercial-skill">Excel</span><span class="commercial-skill">Financial Modelling</span></div>
+    </div>
+
+    <div class="commercial-card fade-in">
+      <div class="commercial-tag">Internship Report · 2023</div>
+      <h3 class="commercial-title">Junior Analyst Internship: Macroeconomic Forecasting & Sector Analysis</h3>
+      <div class="commercial-org">Hedge Equities Ltd · Ernakulam, Kerala</div>
+      <p class="commercial-desc">Documented outcomes of a junior analyst internship covering macroeconomic variable analysis and forecasting across GDP, IIP, PMI, and inflation for the next quarter. Conducted sector-wise Porter's Five Forces analysis and quantitative company valuations. Built common size financial statements using five-year data and projected forward values in Excel. Developed market dynamics reports providing daily bird's eye view of market conditions. Constructed investment portfolios using 50-30-20 allocation framework.</p>
+      <div class="commercial-skills"><span class="commercial-skill">Macro Forecasting</span><span class="commercial-skill">Sector Analysis</span><span class="commercial-skill">Financial Statements</span><span class="commercial-skill">Portfolio Construction</span><span class="commercial-skill">Market Dynamics</span><span class="commercial-skill">Advanced Excel</span></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- MSC COURSEWORK -->
+<section id="coursework">
+  <div class="section-label">MSc Coursework</div>
+  <h2 class="section-title">Academic work from the University of Nottingham</h2>
+  <div class="coursework-grid">
+
+    <div class="coursework-card fade-in coursework-featured">
+      <div class="coursework-tag">MSc Dissertation · Supervised by Dr Robin Cubitt · 2024–25</div>
+      <h3 class="coursework-title">Regularised Econometrics vs Nonlinear Machine Learning: A Temporal Cross-Validation Framework for Predicting State-Level Child Malnutrition in India</h3>
+      <div class="coursework-institution">University of Nottingham · School of Economics · MSc Economics and Data Science</div>
+      <p class="coursework-desc">This dissertation employs a temporal cross-validation design to benchmark econometric and machine learning models in predicting state-level child malnutrition outcomes across India. NFHS-4 and RBI indicators from 2015 to 2016 were used to forecast NFHS-5 malnutrition measures from 2019 to 2021. Five models were assessed through leave-one-state-out and regional holdout validation strategies.</p>
+      <div class="coursework-findings">
+        <div class="finding-item"><span class="finding-label">Key finding</span> Machine learning improved accuracy only for underweight, where Random Forest captured complex interactions. Ridge and LASSO were more reliable for stunting, wasting, and severe wasting demonstrating that regularised econometrics outperforms ML in small-sample policy settings.</div>
+        <div class="finding-item"><span class="finding-label">Policy insight</span> Education, female literacy, and demographic pressure consistently emerged as the strongest predictors. Income and financial variables played only a marginal role, reaffirming Sen's entitlement framework.</div>
+        <div class="finding-item"><span class="finding-label">Methods</span> OLS · Ridge · LASSO · Random Forest · XGBoost · LOOCV · SHAP Values · Moran's I · Partial Dependence Plots</div>
+      </div>
+    </div>
+
+    <div class="coursework-card fade-in">
+      <div class="coursework-tag">Applied Microeconometrics · ECON4008 · Group Project · May 2025</div>
+      <h3 class="coursework-title">The Impact of Boardroom Gender Diversity on the Gender Pay Gap</h3>
+      <div class="coursework-institution">University of Nottingham · Co-authored with Divesh Dinesh Aswani, Siddhangana Ray, Florian Burnat</div>
+      <p class="coursework-desc">Investigated the causal effect of boardroom gender diversity on the gender pay gap in UK firms using firm-level panel data from 2017 to 2023 across 22,399 observations. Employed propensity score-based estimators to address confounding by observable firm characteristics including size, profitability, leverage, and industry.</p>
+      <div class="coursework-findings">
+        <div class="finding-item"><span class="finding-label">Key finding</span> Above-median female board representation was associated with a statistically significant reduction in the mean gender pay gap of approximately 2.2 percentage points for hourly pay and 10 percentage points for bonus pay. No robust effect was found on the median pay gap, suggesting the impact is concentrated at the upper end of the pay distribution.</div>
+        <div class="finding-item"><span class="finding-label">Methods</span> Nearest Neighbour Matching · Kernel Matching · IPW · AIPW · Propensity Score Matching · Stata · 22,000+ firm-year records</div>
+      </div>
+    </div>
+
+    <div class="coursework-card fade-in">
+      <div class="coursework-tag">Big Data Economics · ECON4060 · 2024–25</div>
+      <h3 class="coursework-title">Forecasting Interbank Overnight Rate and CPI Using Big Data</h3>
+      <div class="coursework-institution">University of Nottingham · Australian Bureau of Statistics and Reserve Bank of Australia Data</div>
+      <p class="coursework-desc">Evaluated machine learning approaches for macroeconomic forecasting using quarterly Australian data from Q2 1985 to Q2 2015 across up to 103 macroeconomic indicators. Compared Ridge Regression and Gradient Boosting for forecasting CPI inflation and interbank overnight rates, assessing not only predictive accuracy but also stability during economic shocks and interpretability for policy use.</p>
+      <div class="coursework-findings">
+        <div class="finding-item"><span class="finding-label">Key finding</span> Ridge regression with 20 to 40 predictors yielded the most stable forecasts, consistent with findings from Beckers and Bernardi (2018). Gradient Boosting offered gains in accuracy in some scenarios but at the cost of interpretability. Model selection depends critically on the specific use case and the accuracy versus transparency trade-off.</div>
+        <div class="finding-item"><span class="finding-label">Methods</span> Ridge Regression · Gradient Boosting · Time-Series Cross-Validation · Rolling Window Backtesting · SHAP Values · Python</div>
+      </div>
+    </div>
+
+    <div class="coursework-card fade-in">
+      <div class="coursework-tag">Econometric Data Analysis · 2024–25</div>
+      <h3 class="coursework-title">Stock Market Volatility, Consumer Confidence & Post-Brexit UK Economic Growth</h3>
+      <div class="coursework-institution">University of Nottingham · MSc Economics and Data Science · Monthly Data July 2016 – June 2024</div>
+      <p class="coursework-desc">Investigated the dynamic interlinkages between FTSE 100 volatility, consumer confidence, and GDP growth in post-Brexit UK using 96 months of monthly data. Applied a full time series econometric pipeline stationarity testing, cointegration analysis, and Vector Error Correction Modelling to distinguish short-run dynamics from long-run equilibrium relationships. Validated model stability via eigenvalue analysis, residual diagnostics, Shapiro–Wilk normality testing, and Lagrange-multiplier autocorrelation tests. Explored impulse transmission across variables using Orthogonal Impulse Response Functions.</p>
+      <div class="coursework-findings">
+        <div class="finding-item"><span class="finding-label">Key finding</span> FTSE volatility has a significant short-run positive effect on GDP growth, while consumer confidence shows no meaningful short-run impact suggesting post-Brexit economic dynamics are driven more by structural shocks and market forces than by household sentiment.</div>
+        <div class="finding-item"><span class="finding-label">Long-run result</span> Johansen cointegration confirmed two cointegrating relationships. In the long run, stock market volatility and economic growth maintain a stable positive equilibrium, with consumer confidence playing only a marginal role.</div>
+        <div class="finding-item"><span class="finding-label">Methods</span> VECM · Johansen Cointegration · ADF Stationarity Testing · Impulse Response Functions · AIC Lag Selection · Residual Diagnostics · Stata</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Technical Skills</div>
+  <h2 class="section-title">Built for complex, messy, real-world data</h2>
+  <div class="skills-grid">
+    <div class="skill-group fade-in"><h4>Languages</h4><ul class="skill-list"><li>Python (scikit-learn, pandas, numpy)</li><li>R (ggplot2, caret, dplyr)</li><li>SQL (complex queries, joins)</li><li>Stata · SPSS</li></ul></div>
+    <div class="skill-group fade-in"><h4>Statistical Methods</h4><ul class="skill-list"><li>Ridge · LASSO · OLS</li><li>Random Forest · XGBoost</li><li>Propensity Score Matching</li><li>Temporal Cross-Validation</li><li>SHAP · Moran's I</li></ul></div>
+    <div class="skill-group fade-in"><h4>Visualisation & BI</h4><ul class="skill-list"><li>Power BI</li><li>Tableau</li><li>Advanced Excel</li><li>Google Sheets</li><li>Matplotlib · ggplot2</li></ul></div>
+    <div class="skill-group fade-in"><h4>Research Methods</h4><ul class="skill-list"><li>Survey Design & Fieldwork</li><li>Random Sampling</li><li>Mixed Methods Research</li><li>Policy Analysis</li><li>Financial Modelling</li></ul></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2 class="section-title">Where the work has happened</h2>
+  <div class="exp-timeline">
+    <div class="exp-item fade-in">
+      <div class="exp-date">Apr 2023</div>
+      <div>
+        <div class="exp-role">Junior Analyst</div>
+        <div class="exp-company">Hedge Equities Ltd · Ernakulam, India</div>
+        <p class="exp-desc">Analysed macroeconomic indicators including GDP, IIP, PMI, and inflation to generate quarterly economic forecasts. Conducted sector-level industry analysis and quantitative company valuations. Built equity research reports and produced common size financial statements. Validated and reconciled all financial datasets before every output.</p>
+      </div>
+    </div>
+    <div class="exp-item fade-in">
+      <div class="exp-date">Jun 2020 – Present</div>
+      <div>
+        <div class="exp-role">Founder & Manager</div>
+        <div class="exp-company">Aaleescake World · Kerala, India</div>
+        <p class="exp-desc">Founded a food business at age 17. Built Advanced Excel models tracking revenue, costs, and margin across ten product lines. Identified a supplier cost misalignment through benchmarking analysis and delivered a 15% cost reduction through evidence-based negotiation. Managed operations remotely from the UK while completing an MSc.</p>
+      </div>
+    </div>
+    <div class="exp-item fade-in">
+      <div class="exp-date">Mar 2025 – Present</div>
+      <div>
+        <div class="exp-role">Team Member (Part Time)</div>
+        <div class="exp-company">J D Wetherspoon · Nottingham, UK</div>
+        <p class="exp-desc">Maintained accuracy and consistent delivery in a high-volume environment while completing a full-time postgraduate degree.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner fade-in">
+    <div class="section-label" style="justify-content:center">Get in Touch</div>
+    <h2 class="section-title">Let's work together</h2>
+    <p class="contact-desc">I am actively looking for data analyst, economics analyst, and quantitative analyst roles in the UK. If your team needs someone who can handle complex data, build reliable models, and communicate findings clearly, I would love to hear from you.</p>
+    <div class="contact-links">
+      <a href="mailto:adhaliabino@gmail.com" class="contact-link">✉ adhaliabino@gmail.com</a>
+      <a href="https://linkedin.com/in/adhalia" class="contact-link">LinkedIn</a>
+      
+    </div>
+  </div>
+</section>
+
+<footer>Adhalia Chinnu Bino · Nottingham, United Kingdom · Built with care</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
